@@ -113,6 +113,22 @@ nav {
     text-shadow: 0 0 5px var(--primary-green);
 }
 
+.mobile-menu {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 1001;
+}
+
+.mobile-menu .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-green);
+    transition: 0.3s;
+}
+
 /* --- Sections --- */
 .section {
     padding: 6rem 2rem;
@@ -591,15 +607,135 @@ h2 {
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
+    .mobile-menu {
+        display: flex;
+    }
+
     .nav-links {
-        display: none;
+        position: fixed;
+        right: -100%;
+        top: 0;
+        flex-direction: column;
+        background: rgba(5, 5, 5, 0.95);
+        border-left: 1px solid var(--dim-green);
+        width: 100%;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        transition: 0.3s;
+        backdrop-filter: blur(5px);
+        padding: 2rem;
+        z-index: 1000;
+        gap: 3rem;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .mobile-menu.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu.active .bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .mobile-menu.active .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* Section adjustments */
+    .section {
+        padding: 5rem 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
     }
 
     .grid-container {
         grid-template-columns: 1fr;
     }
 
+    /* Hero */
     .terminal-body {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
+        min-height: 250px;
+    }
+
+    .hero {
+        align-items: flex-start;
+        padding-top: 8rem;
+    }
+
+    /* Skills */
+    .skills-grid {
+        gap: 2rem;
+    }
+
+    .skill-category h3 {
+        margin-bottom: 1rem;
+    }
+
+    .skill-bar {
+        margin-bottom: 1rem;
+    }
+
+    /* Blogs */
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .blog-excerpt {
+        margin-bottom: 1rem;
+    }
+
+    /* Portfolio */
+    .portfolio-container {
+        grid-template-columns: 1fr;
+    }
+
+    .btn-glitch {
+        padding: 0.8rem 1rem;
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+        box-sizing: border-box;
+        font-size: 0.75rem;
+        white-space: normal;
+        word-wrap: break-word;
+    }
+}
+
+/* --- Extra Small Phones (e.g., S21 FE, iPhone SE) --- */
+@media (max-width: 400px) {
+    .section {
+        padding: 4rem 1rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    .terminal-body {
+        font-size: 0.75rem;
+        padding: 1rem;
+    }
+
+    .hero {
+        padding-top: 6rem;
+    }
+
+    .btn-glitch {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.7rem;
+    }
+
+    .glitch-text::before,
+    .glitch-text::after {
+        clip: auto;
+        animation: none;
     }
 }
