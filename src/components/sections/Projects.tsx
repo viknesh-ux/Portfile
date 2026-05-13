@@ -70,7 +70,7 @@ export default function Projects() {
               
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {Array.isArray(project.tags) && project.tags.map(tag => (
+                  {Array.isArray(project.tags) && project.tags.map((tag: string) => (
                     <span key={tag} className="text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded-full border border-cyber-cyan/30 text-cyber-cyan bg-cyber-cyan/5">
                       {tag}
                     </span>
