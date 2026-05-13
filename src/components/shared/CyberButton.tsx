@@ -8,6 +8,7 @@ interface CyberButtonProps extends HTMLMotionProps<'button'> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   glow?: boolean;
+  children: React.ReactNode; // Explicitly override children to be ReactNode
 }
 
 export default function CyberButton({
@@ -54,7 +55,7 @@ export default function CyberButton({
       <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-inherit opacity-50" />
       
       <span className="relative z-10 flex items-center gap-2">
-        {children}
+        {children as React.ReactNode}
       </span>
       
       {/* Hover Overlay */}
