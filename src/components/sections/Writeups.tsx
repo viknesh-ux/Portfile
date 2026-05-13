@@ -14,7 +14,7 @@ export default function Writeups() {
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('blogs')
         .select('*')
         .order('created_at', { ascending: false });
@@ -48,7 +48,7 @@ export default function Writeups() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogs.length > 0 ? blogs.map((blog, idx) => {
+          {blogs.length > 0 ? blogs.map((blog: any, idx: number) => {
             const isExternal = !!blog.link_url;
             const targetUrl = isExternal ? blog.link_url : `/blog/${blog.slug}`;
 
@@ -102,7 +102,7 @@ export default function Writeups() {
               </GlassCard>
             );
           }) : (
-            [1, 2, 3].map((i) => (
+            [1, 2, 3].map((i: number) => (
               <GlassCard key={i} delay={i * 0.1} className="p-12 border-dashed border-white/10 flex flex-col items-center justify-center text-center opacity-30">
                 <BookOpen className="w-12 h-12 text-gray-600 mb-4" />
                 <div className="text-sm font-mono text-gray-500 uppercase tracking-widest">Awaiting Transmission...</div>

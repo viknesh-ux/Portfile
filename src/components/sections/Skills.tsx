@@ -17,7 +17,7 @@ export default function Skills() {
 
   useEffect(() => {
     const fetchSkills = async () => {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('skills')
         .select('*')
         .order('category', { ascending: true });
@@ -58,7 +58,7 @@ export default function Skills() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {skillCategories.length > 0 ? skillCategories.map((category, idx) => (
+          {skillCategories.length > 0 ? skillCategories.map((category, idx: number) => (
             <GlassCard key={idx} delay={idx * 0.1}>
               <h3 className="text-xl font-bold mb-6 font-mono text-cyber-cyan flex items-center gap-2 uppercase tracking-widest">
                 <span className="w-2 h-2 bg-cyber-cyan rounded-full animate-pulse" />
@@ -66,7 +66,7 @@ export default function Skills() {
               </h3>
               
               <div className="space-y-6">
-                {category.skills.map((skill, sIdx) => (
+                {category.skills.map((skill: Skill, sIdx: number) => (
                   <div key={sIdx}>
                     <div className="flex justify-between mb-2">
                       <span className="text-sm font-mono text-gray-300 uppercase tracking-widest">{skill.name}</span>
@@ -88,7 +88,6 @@ export default function Skills() {
               </div>
             </GlassCard>
           )) : (
-            // Fallback to static if empty for now or show nothing
             <div className="md:col-span-2 text-center py-12 opacity-30 font-mono text-sm uppercase tracking-widest">
               Awaiting Skill Matrix Sync...
             </div>
